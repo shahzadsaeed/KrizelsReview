@@ -1,0 +1,47 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Reviews</h1>
+
+<%= link_to 'Download Reviews', download_reviews_excel_path, id: 'download-reviews-link' %>
+
+<div id="reviews">
+  <% @reviews.each do |review| %>
+    <%= render review %>
+    <p>
+      <%= link_to "Show this review", review %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New review", new_review_path %>
+
+<script type="module">
+  document.addEventListener('DOMContentLoaded', function () {
+    const downloadLink = document.getElementById('download-reviews-link');
+
+    downloadLink.addEventListener('click', function (event) {
+      event.preventDefault();
+
+      fetch('/download_reviews_excel')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.blob();
+        })
+        .then(blob => {
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'reviews.xlsx';
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          window.URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+          console.error('There was a problem with the download:', error);
+        });
+    });
+  });
+</script>
