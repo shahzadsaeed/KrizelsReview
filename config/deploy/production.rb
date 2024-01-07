@@ -1,7 +1,11 @@
-server 'ec2-13-39-107-194.eu-west-3.compute.amazonaws.com', port: 22, roles: [:web, :app, :db], primary: true
+server '3.134.118.15', port: 22, roles: [:web, :app, :db], primary: true
 set :stage, :production
 set :rails_env, :production
 set :user, 'ubuntu'
+
+set :rbenv_ruby_version, '3.0.3p157'
+set :default_env, { rbenv_bin_path: '~/.rbenv/bin' }
+SSHKit.config.command_map[:rake] = "#{fetch(:default_env)[:rbenv_bin_path]}/rbenv ruby-#{fetch(:rbenv_ruby_version)} do bundle exec rake"
 
 # server-based syntax
 # ======================

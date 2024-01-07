@@ -21,6 +21,8 @@ set :puma_state,      "#{shared_path}/tmp/pids/puma.state"
 set :puma_pid,        "#{shared_path}/tmp/pids/puma.pid"
 set :puma_access_log, "#{release_path}/log/puma.error.log"
 set :puma_error_log,  "#{release_path}/log/puma.access.log"
+set :default_env, { path: "~/.rbenv/shims:~/.rbenv/bin:$PATH" }
+set :rbenv1_map_bins, %w{rake gem bundle ruby puma pumactl}
 # set :ssh_options,     { forward_agent: true, user: 'ubuntu', keys: %w(~/krizels_review_staging.pem) }
 set :ssh_options, {
   keys: %w(~/.ssh/id_rsa), # Add the path to your SSH private key
