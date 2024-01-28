@@ -1,32 +1,178 @@
 <p style="color: green"><%= notice %></p>
 
+<div class="container d-flex justify-content-between">
+  <div><%= image_tag "logo.png", alt: "Logo", style: "width: 150px; height: 70px" %></div>
+  <b>GUEST EXPERIENCE SURVEY</b>
+</div>
+
 <div class="container">
   <%= form_with(model: @review) do |form| %>
-    <%= form.label :title, "Review Title:" %><br>
-    <%= form.text_field :title, required: true %><br>
-    
-    <%= form.label :review, "Your Review:" %><br>
-    <%= form.text_area :review, rows: 4, required: true %><br>
-    
-    <%= form.label :name, "Your Name:" %><br>
-    <%= form.text_field :name, required: true %><br>
+    <div id="r1">
+      <div class="d-flex align-items-center justify-content-center">
+        <%= form.label :rating_1, "Please rate your overall satisfaction with your experience at this Krizels Order" %>
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <div><%= image_tag "sad.png", alt: "Sad", style: "width: 50px; height: 50px; margin-top: -15px; margin-left: 5px;" %></div>
+        <div class="rating d-flex flex-row-reverse">
+          <%= form.radio_button :rating_1, 1, id: "r1_star1", class: "star-radio" %>
+          <label for="r1_star1">★</label>
+          <%= form.radio_button :rating_1, 2, id: "r1_star2", class: "star-radio" %>
+          <label for="r1_star2">★</label>
+          <%= form.radio_button :rating_1, 3, id: "r1_star3", class: "star-radio" %>
+          <label for="r1_star3">★</label>
+          <%= form.radio_button :rating_1, 4, id: "r1_star4", class: "star-radio" %>
+          <label for="r1_star4">★</label>
+          <%= form.radio_button :rating_1, 5, id: "r1_star5", class: "star-radio" %>
+          <label for="r1_star5">★</label>
+        </div>
+        <div><%= image_tag "happy.png", alt: "Happy", style: "width: 50px; height: 50px; margin-top: -15px; margin-left: 5px;" %></div>
+      </div>
+    </div>
+  
+    <div id="r2" class="d-none">
+      <hr>
+      <div class="d-flex align-items-center justify-content-center">
+        <h3>Please rate your satisfaction with... </h3>
+      </div>
+      <br>
+      <div class="d-flex align-items-center justify-content-center">
+        <%= form.label :rating_2, "The taste of your food." %>
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <div><%= image_tag "sad.png", alt: "Sad", style: "width: 50px; height: 50px; margin-top: -15px; margin-left: 5px;" %></div>
+        <div class="rating d-flex flex-row-reverse">
+          <%= form.radio_button :rating_2, 1, id: "r2_star1", class: "star-radio" %>
+          <label for="r2_star1">★</label>
+          <%= form.radio_button :rating_2, 2, id: "r2_star2", class: "star-radio" %>
+          <label for="r2_star2">★</label>
+          <%= form.radio_button :rating_2, 3, id: "r2_star3", class: "star-radio" %>
+          <label for="r2_star3">★</label>
+          <%= form.radio_button :rating_2, 4, id: "r2_star4", class: "star-radio" %>
+          <label for="r2_star4">★</label>
+          <%= form.radio_button :rating_2, 5, id: "r2_star5", class: "star-radio" %>
+          <label for="r2_star5">★</label>
+        </div>
+        <div><%= image_tag "happy.png", alt: "Happy", style: "width: 50px; height: 50px; margin-top: -15px; margin-left: 5px;" %></div>
+      </div>
+    </div>
 
-    <%= form.hidden_field :order_id, value: params[:order_id] %>
+    <div id="r3" class="d-none">
+      <hr>
+      <div class="d-flex align-items-center justify-content-center">
+        <%= form.label :rating_3, "The friendliness of the employees." %>
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <div><%= image_tag "sad.png", alt: "Sad", style: "width: 50px; height: 50px; margin-top: -15px; margin-left: 5px;" %></div>
+        <div class="rating d-flex flex-row-reverse">
+          <%= form.radio_button :rating_3, 1, id: "r3_star1", class: "star-radio" %>
+          <label for="r3_star1">★</label>
+          <%= form.radio_button :rating_3, 2, id: "r3_star2", class: "star-radio" %>
+          <label for="r3_star2">★</label>
+          <%= form.radio_button :rating_3, 3, id: "r3_star3", class: "star-radio" %>
+          <label for="r3_star3">★</label>
+          <%= form.radio_button :rating_3, 4, id: "r3_star4", class: "star-radio" %>
+          <label for="r3_star4">★</label>
+          <%= form.radio_button :rating_3, 5, id: "r3_star5", class: "star-radio" %>
+          <label for="r3_star5">★</label>
+        </div>
+        <div><%= image_tag "happy.png", alt: "Happy", style: "width: 50px; height: 50px; margin-top: -15px; margin-left: 5px;" %></div>
+      </div>
+    </div>
 
-    <%= form.label :rating, "Rating:" %><br>
-    <div class="rating">
-      <%= form.radio_button :rating, 5, id: "star5" %>
-      <label for="star5">★</label>
-      <%= form.radio_button :rating, 4, id: "star4" %>
-      <label for="star4">★</label>
-      <%= form.radio_button :rating, 3, id: "star3" %>
-      <label for="star3">★</label>
-      <%= form.radio_button :rating, 2, id: "star2" %>
-      <label for="star2">★</label>
-      <%= form.radio_button :rating, 1, id: "star1" %>
-      <label for="star1">★</label>
-    </div><br>
-    
-    <%= form.submit "Submit Review" %>
+    <div id="r4" class="d-none">
+      <hr>
+      <div class="d-flex align-items-center justify-content-center">
+        <%= form.label :rating_4, "The accuracy of your order." %>
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <div><%= image_tag "sad.png", alt: "Sad", style: "width: 50px; height: 50px; margin-top: -15px; margin-left: 5px;" %></div>
+        <div class="rating d-flex flex-row-reverse">
+          <%= form.radio_button :rating_4, 1, id: "r4_star1", class: "star-radio" %>
+          <label for="r4_star1">★</label>
+          <%= form.radio_button :rating_4, 2, id: "r4_star2", class: "star-radio" %>
+          <label for="r4_star2">★</label>
+          <%= form.radio_button :rating_4, 3, id: "r4_star3", class: "star-radio" %>
+          <label for="r4_star3">★</label>
+          <%= form.radio_button :rating_4, 4, id: "r4_star4", class: "star-radio" %>
+          <label for="r4_star4">★</label>
+          <%= form.radio_button :rating_4, 5, id: "r4_star5", class: "star-radio" %>
+          <label for="r4_star5">★</label>
+        </div>
+        <div><%= image_tag "happy.png", alt: "Happy", style: "width: 50px; height: 50px; margin-top: -15px; margin-left: 5px;" %></div>
+      </div>
+    </div>
+
+    <div id="r5" class="d-none">
+      <hr>
+      <div class="d-flex align-items-center justify-content-center">
+        <%= form.label :rating_5, "The overall value for the price you paid." %>
+      </div>
+      <div class="d-flex align-items-center justify-content-center">
+        <div><%= image_tag "sad.png", alt: "Sad", style: "width: 50px; height: 50px; margin-top: -15px; margin-left: 5px;" %></div>
+        <div class="rating d-flex flex-row-reverse">
+          <%= form.radio_button :rating_5, 1, id: "r5_star1", class: "star-radio" %>
+          <label for="r5_star1">★</label>
+          <%= form.radio_button :rating_5, 2, id: "r5_star2", class: "star-radio" %>
+          <label for="r5_star2">★</label>
+          <%= form.radio_button :rating_5, 3, id: "r5_star3", class: "star-radio" %>
+          <label for="r5_star3">★</label>
+          <%= form.radio_button :rating_5, 4, id: "r5_star4", class: "star-radio" %>
+          <label for="r5_star4">★</label>
+          <%= form.radio_button :rating_5, 5, id: "r5_star5", class: "star-radio" %>
+          <label for="r5_star5">★</label>
+        </div>
+        <div><%= image_tag "happy.png", alt: "Happy", style: "width: 50px; height: 50px; margin-top: -15px; margin-left: 5px;" %></div>
+      </div>
+    </div>
+
+    <div id="r6", class="d-none">
+      <hr>
+      <div class="d-flex align-items-center justify-content-center">
+        <%= form.label :additional_comments, "Additional Comments" %>
+      </div>
+
+      <div class="d-flex align-items-center justify-content-center">
+        <%= form.text_area :additional_comments, id: "additional_comments", maxlength: 1200, cols: 80, rows: 8, class: 'w-50', placeholder: "Please tell us why you were not Highly Satisfied with your experience at this Order by Krizels. Be as specific as you would like." %>
+      </div>
+
+      <div class="d-flex align-items-center justify-content-center">
+        <small id="text-counter" class="form-text text-muted"> Remaining / Allowed: <b>1200 / 1200</b></small>
+      </div>
+
+      <%= form.submit "Submit Review" %>
+    </div>
   <% end %>
 </div>
+
+<script type="module">
+  document.addEventListener("DOMContentLoaded", function() {
+    function showNextRating(currentRating) {
+      var nextRatingId = "r" + (parseInt(currentRating.substring(1)) + 1);
+      var nextRatingSection = document.getElementById(nextRatingId);
+      if (nextRatingSection) {
+        nextRatingSection.classList.remove("d-none");
+      }
+    }
+
+    document.querySelectorAll(".star-radio").forEach(function(radio) {
+      radio.addEventListener("change", function() {
+        var currentRating = this.id;
+        showNextRating(currentRating);
+      });
+    });
+
+    function updateCharacterCounter() {
+      var textArea = document.getElementById("additional_comments");
+      var counter = document.getElementById("text-counter");
+      var remaining = textArea.maxLength - textArea.value.length;
+      counter.textContent = "Remaining / Allowed: " + `${remaining} / 1200`;
+    }
+
+    // Add event listener to textarea for input event
+    var textArea = document.getElementById("additional_comments");
+    textArea.addEventListener("input", updateCharacterCounter);
+
+    // Initial update of character counter
+    updateCharacterCounter();
+  });
+</script>
