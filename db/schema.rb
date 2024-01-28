@@ -11,13 +11,15 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2024_01_01_080908) do
-  create_table 'reviews', force: :cascade do |t|
-    t.string 'title'
-    t.string 'review'
-    t.string 'name'
-    t.string 'rating'
-    t.string 'order_id'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "reviews", force: :cascade do |t|
+    t.string "rating1"
+    t.string "rating2"
+    t.string "rating3"
+    t.string "rating4"
+    t.string "comments"
+    t.string "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
+
 end

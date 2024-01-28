@@ -55,18 +55,18 @@ class ReviewsController < ApplicationController
   end
 
   def download_reviews_excel
-    reviews = Review.all # Fetch all reviews from your database
+    reviews = Review.all
 
     package = Axlsx::Package.new
     workbook = package.workbook
 
     workbook.add_worksheet(name: 'Reviews') do |sheet|
       # Add headers
-      sheet.add_row %w[Title Review Name Rating Order_ID]
+      sheet.add_row %w[Order_ID Overall_Rating Food_Rating Frozen_Rating Time_Rating Comments]
 
       # Add review data
       reviews.each do |review|
-        sheet.add_row [review.title, review.review, review.name, review.rating, review.order_id]
+        sheet.add_row [review.order_id, review.rating1, review.rating2, review.rating3, review.rating4, review.comments]
       end
     end
 
@@ -83,6 +83,6 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:title, :review, :name, :rating, :order_id)
+    params.require(:review).permit(:rating1, :rating2, :rating3, :rating4, :comments, :order_id)
   end
 end
