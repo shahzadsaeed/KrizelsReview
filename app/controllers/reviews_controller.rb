@@ -1,6 +1,7 @@
 require 'axlsx'
 
 class ReviewsController < ApplicationController
+  before_action :authenticate, except: [:submit_review]
   before_action :set_review, only: %i[show edit update destroy]
 
   def index
@@ -76,7 +77,15 @@ class ReviewsController < ApplicationController
     send_file(file_path, filename: 'reviews.xlsx', type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
   end
 
+  def confirm_delivery; end
+
   private
+
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == 'admin' && password == 'Fr0mD@y1'
+    end
+  end
 
   def set_review
     @review = Review.find(params[:id])

@@ -1,0 +1,39 @@
+<div class="confirm-delivery">
+  <div class="confirm-delivery-container">
+    <h2>Do you want to receive your order today?</h2>
+    <button id="yesBtn" onclick="confirmOrder()">Yes</button>
+    <button id="noBtn" onclick="showOptions()">No</button>
+    <div class="options">
+      <p>When would you like to receive your order?</p>
+      <button onclick="receiveOrder('tomorrow')">Tomorrow</button>
+      <button onclick="receiveOrder('day after tomorrow')">Day After Tomorrow</button>
+      <button onclick="receiveOrder('3 days from now')">3 Days From Now</button>
+    </div>
+    <p id="confirmationMessage"></p>
+  </div>
+</div>
+
+<script>
+  function confirmOrder() {
+    document.getElementById("confirmationMessage").innerText = "Thanks for confirming!";
+    document.getElementById("yesBtn").style.display = "none";
+    document.getElementById("noBtn").style.display = "none";
+  }
+
+  function showOptions() {
+    var optionsDiv = document.querySelector(".options");
+    optionsDiv.style.display = "block";
+    document.getElementById("yesBtn").style.display = "none";
+    document.getElementById("noBtn").style.display = "none";
+  }
+
+  function receiveOrder(date) {
+    document.getElementById("confirmationMessage").innerText = "You chose to receive your order " + date + ".";
+    hideOptions();
+  }
+
+  function hideOptions() {
+    var optionsDiv = document.querySelector(".options");
+    optionsDiv.style.display = "none";
+  }
+</script>
